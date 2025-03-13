@@ -2,7 +2,6 @@ from streamlit import logger
 import logging
 from dotenv import load_dotenv
 import os
-# import utility_functions as util_functions
 import helper_functions.utility_functions as util_functions
 
 
@@ -14,6 +13,8 @@ def initialize_loggers():
 
     # Disable httpx logging
     logging.getLogger("httpx").setLevel(logging.WARNING)
+
+    return app_logger
 
 
 def authenticate_user(placeholder, st):
@@ -32,7 +33,7 @@ def authenticate_user(placeholder, st):
                 st.error("Invalid auth code. Please try again.")
 
 
-def get_user_status():
+def get_user_status(app_logger: logger):
     # Get user ip address
     user_ip = util_functions.get_user_ip()
 
@@ -42,10 +43,14 @@ def get_user_status():
     # Get maximum access count
     max_access_cnt = os.environ.get("MAX_ACCESS_CNT")
 
+    app_logger.info(f"app:get_user_status: User Access cnt: {access_cnt}, Max access cnt: {max_access_cnt}")
+
     # Compare the access count with maximum limit
     if access_cnt > int(max_access_cnt):        # Maximum limit exceeded
+        app_logger.info("app:get_user_status: maximum limit exceeded")
         return False
     else:                                       # Maximum limit not exceeded
+        app_logger.info("app:get_user_status: access allowed")
         # increase the access count
         util_functions.increase_access_cnt(user_ip)
         return True
