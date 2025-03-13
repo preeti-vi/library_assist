@@ -20,8 +20,7 @@ if "authenticated" in st.session_state:
     app_logger.info(f"streamlit_app: after calling get_user_status")
     if not access_allowed:
         app_logger.info(f"streamlit_app: access not allowed")
-        msg = ("Sorry, you have exhausted the maximum number of queries limit and are now blocked. "
-               "To extend your access limit, please write to \"preeti.virkar@gmail.com\"")
+        msg = ("Sorry, you have exhausted the maximum number of queries limit and are now blocked.")
         st.error(msg)
     else:
         app_logger.info(f"streamlit_app: access allowed")
