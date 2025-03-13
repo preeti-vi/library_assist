@@ -1,8 +1,1 @@
-langchain
-langchain_openai
-langchain-core
-langchain_community
-python-dotenv
-langgraph
-
 streamlit
