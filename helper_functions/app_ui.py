@@ -10,9 +10,7 @@ def show_top_ui(st):
 def show_query_ui(st, app_logger):
     agent_executor = config = None
     try:
-        app_logger.info("app_ui:show_query_ui: before initialize_agent")
         agent_executor, config = library_agent.initialize_agent(st)
-        app_logger.info("app_ui:show_query_ui: after initialize_agent")
     except Exception as e:
         app_logger.error(f"Error occurred in agent initialization : {e}")
         logging.error(f"Error occurred in agent initialization : {e}")
@@ -31,12 +29,6 @@ def show_query_ui(st, app_logger):
             app_logger.info(f"app_ui:show_query_ui: getting the answer")
             response = library_agent.get_answer(agent_executor, config, user_query, app_logger)
             app_logger.info(f"app_ui:show_query_ui: got response : {response}")
-            # if len(response["messages"]) == 4:
-            #     app_logger.info(f"app_ui:show_query_ui: response from tool")
-            #     response = response["messages"][3].content
-            # else:
-            #     app_logger.info(f"app_ui:show_query_ui: response from agent directly")
-            #     response = response["messages"][1].content
             response = response["messages"][-1].content
             placeholder.write(response)
             app_logger.info(f"app_ui:show_query_ui: response written : {response}")
