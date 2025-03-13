@@ -30,7 +30,7 @@ def show_query_ui(st, app_logger):
         try:
             app_logger.info(f"app_ui:show_query_ui: getting the answer")
             response = library_agent.get_answer(agent_executor, config, user_query, app_logger)
-            app_logger.info(f"app_ui:show_query_ui: got response")
+            app_logger.info(f"app_ui:show_query_ui: got response : {response}")
             if len(response["messages"]) == 4:
                 app_logger.info(f"app_ui:show_query_ui: response from tool")
                 response = response["messages"][3].content
