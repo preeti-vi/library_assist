@@ -38,7 +38,7 @@ def show_query_ui(st, app_logger):
                 app_logger.info(f"app_ui:show_query_ui: response from agent directly")
                 response = response["messages"][1].content
             placeholder.write(response)
-            app_logger.info(f"app_ui:show_query_ui: response written")
+            app_logger.info(f"app_ui:show_query_ui: response written : {response}")
             logging.info(response)
         except Exception as e:
             logging.error(f"Error occurred while getting the answer : {e}")
