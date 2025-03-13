@@ -47,10 +47,8 @@ def get_user_status(app_logger: logger):
 
     # Compare the access count with maximum limit
     if access_cnt > int(max_access_cnt):        # Maximum limit exceeded
-        app_logger.info("app:get_user_status: maximum limit exceeded")
         return False
     else:                                       # Maximum limit not exceeded
-        app_logger.info("app:get_user_status: access allowed")
         # increase the access count
         util_functions.increase_access_cnt(user_ip)
         return True
