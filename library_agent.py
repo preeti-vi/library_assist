@@ -29,6 +29,7 @@ def initialize_agent(st):
         # Define the agent
         memory = MemorySaver()
         tools = [lib_tools.is_book_available, lib_tools.enquiry]
+        prompt = "Use the tools to answer user queries. Do not respond on your own."
         agent_executor = create_react_agent(model, tools, checkpointer=memory)
 
         # Define agent configuration
